@@ -1,9 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const context = process.env.CONTEXT
+let baseURL = context == "deploy-preview" ? process.env.DEPLOY_PRIME_URL : context == 'production' ? process.env.URL : "http://localhost:8888"
+let imgEndpoint = new URL("/api/portfolio", baseURL)
+let data = ''
 ---
+
+<script define:vars={{ data, imgEndpoint }}>
+(async() => {
+	try {
+		let response = await fetch(imgEndpoint)
+		data = await response.text()
+		document.getElementById('photos').src = `${data}`
+	} catch {}
+	})()
+</script>
+
 <Layout title="Welcome to Astro.">
 	<main>
+		<div>
+			<img id="photos">
+		</div>
 		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
 		<p class="instructions">
 			Check out the <code>src/pages</code> directory to get started.<br/>
@@ -31,6 +50,10 @@ import Card from '../components/Card.astro';
 		margin: auto;
     	padding: 1em;
 		max-width: 60ch;
+	}
+
+	img{
+		width: 100%;
 	}
 
 	.text-gradient {
