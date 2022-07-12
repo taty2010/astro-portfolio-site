@@ -1,0 +1,98 @@
+<section id="contact">
+    <div class="contact-desc">
+        <h2>Contact Me!</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+    </div>
+    <div class="contact-form">
+        <form
+        netlify
+        netlify-honeypot
+        name="feedback"
+        method="POST"
+        >
+        <p class="hidden">
+            <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+        </p>
+        <input type="hidden" name="form-name" value="feedback" />
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" />
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required />
+        </div>
+        <div>
+            <label for="feedback">Message</label>
+            <textarea id="feedback" wrap="soft" name="feedback" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+
+<style>
+
+section{
+    background-color: #618e97;
+    color: white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 3%;
+}
+
+section div{
+    padding: 2%;
+}
+
+.contact-desc{
+    flex-basis: 50%;
+}
+
+.contact-form {
+    margin: 0 auto;
+    min-width: 250px;
+    flex-basis: 50%;
+}
+
+form div{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+  input,
+  textarea,
+  button {
+    font-size: inherit;
+    margin: 15px 0;
+    padding: 12px 20px;
+    width: 75%;
+  }
+  button {
+    background-color: teal;
+    border: 1px solid black;
+    color: white;
+    width: 50%;
+  }
+  .hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+  </style>
