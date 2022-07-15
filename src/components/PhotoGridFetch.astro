@@ -1,0 +1,41 @@
+---
+import {data, gridEndpoint} from '../components/ApiUrl'
+const style = {
+    'width': '600px',
+    'height': '770px',
+    'bgSize': 'cover',
+    'bgPosition': 'center',
+    'bgRepeat': 'no-repeat',
+    'margin': '0.5%'
+}
+---
+
+<script define:vars={{ data, gridEndpoint, style }}>
+(async() => {
+	try {
+		let response = await fetch(gridEndpoint)
+		data = await response.text()
+        const parsed = JSON.parse(data)
+        const target = document.querySelector('#photo-grid-wrapper')
+        parsed.forEach((d, i)=> {
+            const div = `<img id="photo-grid" 
+            height=${style.height} 
+            width=${style.width} 
+            style="background-image:url('${d}');background-size:${style.bgSize}; background-position:${style.bgPosition}; background-repeat:${style.bgRepeat}; margin:${style.margin}">
+            </div>`
+            target.insertAdjacentHTML('beforeend', div)
+        })
+	} catch {}
+})()
+</script>
+
+<div id="photo-grid-wrapper" class="img-wrapper">
+</div>
+
+<style>
+    #photo-grid-wrapper{
+        display: flex;
+        justify-content: center;
+        flex-flow: wrap;
+    }
+</style>

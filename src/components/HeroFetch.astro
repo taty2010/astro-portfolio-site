@@ -1,0 +1,13 @@
+---
+import {data, heroEndpoint} from '../components/ApiUrl'
+---
+
+<script define:vars={{ data, heroEndpoint }}>
+(async() => {
+	try {
+		let response = await fetch(heroEndpoint)
+		data = await response.text()
+		document.getElementsByTagName('body')[0].style.backgroundImage = `url('${data}')`
+	} catch {}
+	})()
+</script>

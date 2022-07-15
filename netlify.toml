@@ -6,8 +6,13 @@
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
-[function]
-  node-bundler = "esbuild"
+  [functions]
+
+    [functions.node-bundler]
+    external_node_modules = [
+      "module-one",
+      "module-two"
+    ]
   
 [[redirects]]
   from = "/api/*"
