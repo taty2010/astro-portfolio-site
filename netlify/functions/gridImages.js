@@ -12,8 +12,7 @@ export const handler = async () => {
       }
     })
     .then((res) => res.json())
-    // .then(data => console.log(data.media))
-    .catch((err) => err)
+    .catch((err) => console.error(err))
 
     const images = response.media.map((img) => {
         return img.src.original
@@ -21,7 +20,9 @@ export const handler = async () => {
 
     return {
       statusCode: 200,
-      'Content-Type': 'text/html',
+      headers: {
+        'Content-Type': 'text/html'
+      },
       body: JSON.stringify(images)
     }
 }
