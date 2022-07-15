@@ -1,25 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import Nav from '../components/Nav.astro'
-import photos from '../../netlify/functions/data.json'
 import About from '../components/About.astro'
+import ContactForm from '../components/ContactForm.astro'
+import HeroFetch from '../components/HeroFetch.astro';
 
-const context = process.env.CONTEXT
-let baseURL = context == "deploy-preview" ? process.env.DEPLOY_PRIME_URL : context == 'production' ? process.env.URL : "http://localhost:8888"
-let imgEndpoint = new URL("/api/portfolio", baseURL)
-let data = ''
 ---
 
-<script define:vars={{ data, imgEndpoint }}>
-(async() => {
-	try {
-		let response = await fetch(imgEndpoint)
-		data = await response.text()
-		document.getElementsByTagName('body')[0].style.backgroundImage = `url('${data}')`
-	} catch {}
-	})()
-</script>
+<HeroFetch />
 
 <Layout title="Welcome to Astro.">
 	<main>
@@ -29,24 +17,13 @@ let data = ''
 				<p>Architecture photographer</p>
 				<a href="/">Photographs by Pexels</a>
 			</h1>
-			<!-- <div class="hero-overlay">
-			</div> -->
 		</div>
 		<About/>
-		<div class="img-wrapper">
-			{photos.map(photo => (
-				<div>
-					<!-- <img src={photo.img}> -->
-					<div id="photo-grid" style={`background-image: url("${photo.img}")`}></div>
-				</div>
-			))}
-		</div>
+		<ContactForm/>
 	</main>
 </Layout>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-
 	:root {
 		--astro-gradient: linear-gradient(0deg,#4F39FA, #DA62C4);
 	}

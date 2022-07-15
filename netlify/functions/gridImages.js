@@ -4,7 +4,7 @@ import fetch from 'node-fetch';
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 
 export const handler = async () => {
-  const baseUrl = 'https://api.pexels.com/v1/collections/x043eny'
+  const baseUrl = 'https://api.pexels.com/v1/collections/gb7kvpf'
 
     const response = await fetch(baseUrl, {
       method: 'GET',
@@ -19,10 +19,10 @@ export const handler = async () => {
     const images = response.media.map((img) => {
         return img.src.original
     })
-    const randomIndex = Math.floor(Math.random() * data.length)
-    const randomImage = images[randomIndex]
+
     return {
       statusCode: 200,
-      body: randomImage
+      'Conent-Type': 'text/html',
+      body: JSON.stringify(images)
     }
 }
