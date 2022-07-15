@@ -1,4 +1,3 @@
-import data from './data.json';
 import fetch from 'node-fetch';
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
@@ -22,7 +21,7 @@ export const handler = async () => {
 
     return {
       statusCode: 200,
-      'Conent-Type': 'text/html',
+      'Content-Type': 'text/html',
       body: JSON.stringify(images)
     }
 }

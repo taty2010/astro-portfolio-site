@@ -1,4 +1,3 @@
-import data from './data.json';
 import fetch from 'node-fetch';
 
 // Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
@@ -13,13 +12,12 @@ export const handler = async () => {
       }
     })
     .then((res) => res.json())
-    // .then(data => console.log(data.media))
     .catch((err) => err)
 
     const images = response.media.map((img) => {
         return img.src.original
     })
-    const randomIndex = Math.floor(Math.random() * data.length)
+    const randomIndex = Math.floor(Math.random() * images.length)
     const randomImage = images[randomIndex]
     return {
       statusCode: 200,
