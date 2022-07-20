@@ -3,10 +3,6 @@ import {data, gridEndpoint} from '../components/ApiUrl'
 const style = {
     'width': '600px',
     'height': '770px',
-    'bgSize': 'cover',
-    'bgPosition': 'center',
-    'bgRepeat': 'no-repeat',
-    'margin': '0.5%'
 }
 ---
 
@@ -17,12 +13,13 @@ const style = {
 		data = await response.text()
         const parsed = JSON.parse(data)
         const target = document.querySelector('#photo-grid-wrapper')
-        parsed.forEach((d, i)=> {
+        parsed.forEach((image)=> {
             const div = `<img id="photo-grid" 
             height=${style.height} 
             width=${style.width} 
-            style="background-image:url('${d}');background-size:${style.bgSize}; background-position:${style.bgPosition}; background-repeat:${style.bgRepeat}; margin:${style.margin}">
-            </div>`
+            src=${image}
+            style="object-fit:cover"
+            />`
             target.insertAdjacentHTML('beforeend', div)
         })
 	} catch {}
