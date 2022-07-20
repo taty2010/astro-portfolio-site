@@ -1,6 +1,5 @@
+// const fetch = require('node-fetch') 
 import fetch from 'node-fetch';
-
-// Docs on event and context https://www.netlify.com/docs/functions/#the-handler-method
 
 export const handler = async () => {
   const baseUrl = 'https://api.pexels.com/v1/collections/gb7kvpf'
